@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     private let cardCollection: UICollectionView = makeCardCollection()
     private let configureCard = ConfigureCardCell(count: 20)
     private var canRotation = true
+    private var countTap: Int = 0
     
 }
 
@@ -59,11 +60,19 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        (collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell).rotationCard()
+        if self.countTap < 2 {
+            (collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell).rotationCard()
+            self.countTap += 1
+        }
+        print(self.countTap)
     }
 }
 
 extension ViewController: CardCollectionViewCellDelegate {
+    func delleteCard(_ cardCollectionViewCell: CardCollectionViewCell) {
+        self.countTap = 0
+    }
+    
     func cellRotation(_ cardCollectionViewCell: CardCollectionViewCell) {
         guard let arrayVisible = (self.cardCollection.visibleCells as? [CardCollectionViewCell]) else { return }
         
@@ -71,12 +80,16 @@ extension ViewController: CardCollectionViewCellDelegate {
         
         if arrayVisibleFaceUp.count == 2 {
             if arrayVisibleFaceUp.first?.card?.cardID == arrayVisibleFaceUp.last?.card?.cardID {
-                arrayVisibleFaceUp.forEach { $0.isHidden = true }
-                arrayVisibleFaceUp.forEach { $0.rotationCard() }
+                arrayVisibleFaceUp.forEach { $0.deleteCard() }
+                //self.countTap = 0
+            } else {
+                _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    arrayVisibleFaceUp.forEach { $0.rotationCard() }
+                    self.countTap = 0
+                }
             }
-            _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                arrayVisibleFaceUp.forEach { $0.rotationCard() }
-            }
+            
+            print("---\(self.countTap)")
         }
     }
     

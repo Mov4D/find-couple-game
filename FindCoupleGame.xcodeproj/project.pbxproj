@@ -69,7 +69,6 @@
 				A66E553627B80C69007E78DC /* SceneDelegate.swift */,
 				A66E553827B80C69007E78DC /* ViewController.swift */,
 				A66E553D27B80C6B007E78DC /* Assets.xcassets */,
-				A66E553F27B80C6B007E78DC /* LaunchScreen.storyboard */,
 				A66E554227B80C6B007E78DC /* Info.plist */,
 			);
 			path = FindCoupleGame;
@@ -95,9 +94,18 @@
 		A66E555227B987E7007E78DC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A66E555327BA82A1007E78DC /* Storyboard */,
 				A66E554827B815B2007E78DC /* CardGameView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A66E555327BA82A1007E78DC /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A66E553F27B80C6B007E78DC /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,7 +341,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -360,7 +368,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

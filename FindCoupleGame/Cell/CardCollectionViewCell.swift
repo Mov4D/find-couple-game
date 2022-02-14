@@ -9,6 +9,7 @@ import UIKit
 
 protocol CardCollectionViewCellDelegate: AnyObject {
     func cellRotation(_ cardCollectionViewCell: CardCollectionViewCell)
+    func delleteCard(_ cardCollectionViewCell: CardCollectionViewCell)
 }
 
 class CardCollectionViewCell: UICollectionViewCell {
@@ -27,14 +28,15 @@ class CardCollectionViewCell: UICollectionViewCell {
         get { self.cardData }
         set { self.cardData = newValue; faceUp = newValue?.faceUp }
     }
-    let reuseID = "cardCell"
     
-    private let cardView = CardGameView()
     var faceUp: Bool? {
         didSet {
-            print(faceUp)
+            //print(faceUp)
         }
     }
+    
+    let reuseID = "cardCell"
+    private let cardView = CardGameView()
     private var imageCard: [UIImage] = []
     private var cardData: CardModel? {
         didSet {
@@ -59,11 +61,17 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func rotationCard() {
         self.layer.removeAllAnimations()
+        guard let options = [
+            UIView.AnimationOptions.transitionFlipFromLeft,
+            UIView.AnimationOptions.transitionFlipFromRight,
+            UIView.AnimationOptions.transitionFlipFromBottom,
+            UIView.AnimationOptions.transitionFlipFromTop
+        ].randomElement() else { return }
         
         UIView.transition(
             with: cardView,
             duration: 0.4,
-            options: [.curveEaseOut, .transitionFlipFromLeft],
+            options: [.curveEaseOut, options],
             animations: {
                 self.cardView.image = self.imageCard.last
                 let image = self.imageCard[0]
@@ -76,4 +84,22 @@ class CardCollectionViewCell: UICollectionViewCell {
             }
         )
     }
+    
+    func deleteCard() {
+        self.layer.removeAllAnimations()
+        self.faceUp = false
+        UIView.transition(
+            with: cardView,
+            duration: 1,
+            options: [.curveEaseOut, .transitionCurlUp],
+            animations: {
+                self.cardView.image = nil
+            },
+            completion: { [self] _ in
+                self.isHidden = true
+                self.delegate?.delleteCard(self)
+            }
+        )
+    }
+    
 }

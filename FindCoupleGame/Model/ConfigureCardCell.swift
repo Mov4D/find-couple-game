@@ -26,7 +26,7 @@ class ConfigureCardCell {
         
         cell.card = .init(
             cardID: arrayName[indexPath.row],
-            imageCard: [CardImage.cardСover[1]!, UIImage(named: arrayName[indexPath.row]) ?? UIImage()],
+            imageCard: [CardImage.cardСover[5]!, UIImage(named: arrayName[indexPath.row]) ?? UIImage()],
             faceUp: false
         )
         
@@ -124,6 +124,12 @@ extension ConfigureCardCell {
         static let cardСover = [
             UIImage(named: "Atlas_deck_card_back_blue_and_brown.svg"),
             UIImage(named: "Atlas_deck_card_back_green_and_dark_red.svg"),
+            UIImage(named: "card_back_black"),
+            UIImage(named: "card_back_blue"),
+            UIImage(named: "card_back_green"),
+            UIImage(named: "card_back_orange"),
+            UIImage(named: "card_back_purple"),
+            UIImage(named: "card_back_red"),
         ]
     }
 }
