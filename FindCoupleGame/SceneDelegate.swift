@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let viewController = ViewController()
-        let navController = UINavigationController()
+        let navController = Self.makeNavController()
         navController.viewControllers = [viewController]
         window.rootViewController = navController
         
@@ -55,3 +55,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    private static func makeNavController() -> UINavigationController {
+        let nc = UINavigationController()
+        
+        return nc
+    }
+}

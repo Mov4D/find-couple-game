@@ -21,12 +21,13 @@ class ViewController: UIViewController {
         cardCollection.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: CardCollectionViewCell().reuseID)
         addToScreen()
         setConstraints()
-
+        
     }
-
+    
     private let cardCollection: UICollectionView = makeCardCollection()
     private let configureCard = ConfigureCardCell(count: 20)
-
+    private var canRotation = true
+    
 }
 
 extension ViewController {
@@ -52,14 +53,34 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = configureCard.configureCardCell(collection: collectionView, indexPath: indexPath, count: 20) else { return UICollectionViewCell() }
-
+        guard let cell = configureCard.configureCardCell(collection: collectionView, indexPath: indexPath) else { return UICollectionViewCell() }
+        cell.delegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         (collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell).rotationCard()
     }
+}
+
+extension ViewController: CardCollectionViewCellDelegate {
+    func cellRotation(_ cardCollectionViewCell: CardCollectionViewCell) {
+        guard let arrayVisible = (self.cardCollection.visibleCells as? [CardCollectionViewCell]) else { return }
+        
+        let arrayVisibleFaceUp = arrayVisible.filter { $0.faceUp == true }
+        
+        if arrayVisibleFaceUp.count == 2 {
+            if arrayVisibleFaceUp.first?.card?.cardID == arrayVisibleFaceUp.last?.card?.cardID {
+                arrayVisibleFaceUp.forEach { $0.isHidden = true }
+                arrayVisibleFaceUp.forEach { $0.rotationCard() }
+            }
+            _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                arrayVisibleFaceUp.forEach { $0.rotationCard() }
+            }
+        }
+    }
+    
+    
 }
 
 extension ViewController {

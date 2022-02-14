@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol CardCollectionViewCellDelegate: AnyObject {
+    func cellRotation(_ cardCollectionViewCell: CardCollectionViewCell)
+}
+
 class CardCollectionViewCell: UICollectionViewCell {
+    weak var delegate: CardCollectionViewCellDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -20,11 +25,16 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     var card: CardModel? {
         get { self.cardData }
-        set { self.cardData = newValue }
+        set { self.cardData = newValue; faceUp = newValue?.faceUp }
     }
     let reuseID = "cardCell"
     
     private let cardView = CardGameView()
+    var faceUp: Bool? {
+        didSet {
+            print(faceUp)
+        }
+    }
     private var imageCard: [UIImage] = []
     private var cardData: CardModel? {
         didSet {
@@ -48,26 +58,22 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     func rotationCard() {
-        let degreeStart: Double = 180
-        let degreeMiddle: Double = 90
-        let rotationAngleMiddle = CGFloat(degreeStart * Double.pi / 180)
-        let rotationAngleEnd = CGFloat(degreeMiddle * Double.pi / 180)
-        let rotationTransformStart = CATransform3DMakeRotation(rotationAngleMiddle, 0, 1, 0)
-        let rotationTransformMiddle = CATransform3DMakeRotation(rotationAngleEnd, 0, 1, 0)
+        self.layer.removeAllAnimations()
         
-        UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseOut) {
-            self.layer.transform = rotationTransformMiddle
-        } completion: { _ in
-            self.cardView.image = self.imageCard.last
-            self.cardView.layer.transform = rotationTransformStart
-            let image = self.imageCard[0]
-            self.imageCard[0] = self.imageCard[1]
-            self.imageCard[1] = image
-            
-            UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseOut) {
-                self.layer.transform = rotationTransformStart
+        UIView.transition(
+            with: cardView,
+            duration: 0.4,
+            options: [.curveEaseOut, .transitionFlipFromLeft],
+            animations: {
+                self.cardView.image = self.imageCard.last
+                let image = self.imageCard[0]
+                self.imageCard[0] = self.imageCard[1]
+                self.imageCard[1] = image
+            },
+            completion: { [self] _ in
+                self.faceUp = !(faceUp ?? false)
+                self.delegate?.cellRotation(self)
             }
-        }
-        
+        )
     }
 }

@@ -18,15 +18,18 @@ class ConfigureCardCell {
     
     private var arrayName: [String] = []
     
-    func configureCardCell(collection: UICollectionView, indexPath: IndexPath, count: Int) -> CardCollectionViewCell? {
+    func configureCardCell(collection: UICollectionView, indexPath: IndexPath) -> CardCollectionViewCell? {
         guard let cell = collection.dequeueReusableCell(
             withReuseIdentifier: CardCollectionViewCell().reuseID,
             for: indexPath
         ) as? CardCollectionViewCell else { return nil }
+        
         cell.card = .init(
-            cardID: "1",
+            cardID: arrayName[indexPath.row],
             imageCard: [CardImage.cardСover[1]!, UIImage(named: arrayName[indexPath.row]) ?? UIImage()],
-            faceUp: false)
+            faceUp: false
+        )
+        
         return cell
     }
     
@@ -45,7 +48,6 @@ class ConfigureCardCell {
         
         for i in countRange {
             let j = Int.random(in: countRange)
-            
             let help = randomArray[j]
             randomArray[j] = randomArray[i]
             randomArray[i] = help
