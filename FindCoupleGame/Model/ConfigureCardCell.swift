@@ -12,8 +12,6 @@ class ConfigureCardCell {
     
     init(count: Int) {
         self.arrayName = generateRandomNameImageArray(nameArray: generateNameImageArray(count: count))
-        arrayName.forEach { print($0) }
-        print("--------")
     }
     
     private var arrayName: [String] = []
@@ -26,10 +24,12 @@ class ConfigureCardCell {
         
         cell.card = .init(
             cardID: arrayName[indexPath.row],
-            imageCard: [CardImage.cardСover[5]!, UIImage(named: arrayName[indexPath.row]) ?? UIImage()],
+            imageCard: [
+                CardImage.cardСover[5]!,
+                UIImage(named: arrayName[indexPath.row]) ?? UIImage()
+            ],
             faceUp: false
         )
-        
         return cell
     }
     
@@ -52,10 +52,11 @@ class ConfigureCardCell {
             randomArray[j] = randomArray[i]
             randomArray[i] = help
         }
-        
         return randomArray
     }
 }
+
+// MARK: - CardImage
 
 extension ConfigureCardCell {
     private struct CardImage {

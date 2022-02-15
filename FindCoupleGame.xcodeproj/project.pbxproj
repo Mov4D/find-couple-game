@@ -9,20 +9,21 @@
 /* Begin PBXBuildFile section */
 		A66E553527B80C69007E78DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E553427B80C69007E78DC /* AppDelegate.swift */; };
 		A66E553727B80C69007E78DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E553627B80C69007E78DC /* SceneDelegate.swift */; };
-		A66E553927B80C69007E78DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E553827B80C69007E78DC /* ViewController.swift */; };
+		A66E553927B80C69007E78DC /* FindCoupleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E553827B80C69007E78DC /* FindCoupleViewController.swift */; };
 		A66E553E27B80C6B007E78DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A66E553D27B80C6B007E78DC /* Assets.xcassets */; };
 		A66E554127B80C6B007E78DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A66E553F27B80C6B007E78DC /* LaunchScreen.storyboard */; };
 		A66E554927B815B2007E78DC /* CardGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E554827B815B2007E78DC /* CardGameView.swift */; };
 		A66E554C27B818F8007E78DC /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E554B27B818F8007E78DC /* CollectionModel.swift */; };
 		A66E554E27B81EE5007E78DC /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E554D27B81EE5007E78DC /* CardCollectionViewCell.swift */; };
 		A66E555027B96A69007E78DC /* ConfigureCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E554F27B96A69007E78DC /* ConfigureCardCell.swift */; };
+		A66E555527BBB178007E78DC /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66E555427BBB178007E78DC /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A66E553127B80C69007E78DC /* FindCoupleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindCoupleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A66E553427B80C69007E78DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A66E553627B80C69007E78DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A66E553827B80C69007E78DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A66E553827B80C69007E78DC /* FindCoupleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCoupleViewController.swift; sourceTree = "<group>"; };
 		A66E553D27B80C6B007E78DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A66E554027B80C6B007E78DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A66E554227B80C6B007E78DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		A66E554B27B818F8007E78DC /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		A66E554D27B81EE5007E78DC /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		A66E554F27B96A69007E78DC /* ConfigureCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCardCell.swift; sourceTree = "<group>"; };
+		A66E555427BBB178007E78DC /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +69,6 @@
 				A66E554A27B818BC007E78DC /* Model */,
 				A66E553427B80C69007E78DC /* AppDelegate.swift */,
 				A66E553627B80C69007E78DC /* SceneDelegate.swift */,
-				A66E553827B80C69007E78DC /* ViewController.swift */,
 				A66E553D27B80C6B007E78DC /* Assets.xcassets */,
 				A66E554227B80C6B007E78DC /* Info.plist */,
 			);
@@ -94,6 +95,8 @@
 		A66E555227B987E7007E78DC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A66E555427BBB178007E78DC /* MenuViewController.swift */,
+				A66E553827B80C69007E78DC /* FindCoupleViewController.swift */,
 				A66E555327BA82A1007E78DC /* Storyboard */,
 				A66E554827B815B2007E78DC /* CardGameView.swift */,
 			);
@@ -178,13 +181,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A66E553927B80C69007E78DC /* ViewController.swift in Sources */,
+				A66E553927B80C69007E78DC /* FindCoupleViewController.swift in Sources */,
 				A66E554927B815B2007E78DC /* CardGameView.swift in Sources */,
 				A66E553527B80C69007E78DC /* AppDelegate.swift in Sources */,
 				A66E553727B80C69007E78DC /* SceneDelegate.swift in Sources */,
 				A66E555027B96A69007E78DC /* ConfigureCardCell.swift in Sources */,
 				A66E554E27B81EE5007E78DC /* CardCollectionViewCell.swift in Sources */,
 				A66E554C27B818F8007E78DC /* CollectionModel.swift in Sources */,
+				A66E555527BBB178007E78DC /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

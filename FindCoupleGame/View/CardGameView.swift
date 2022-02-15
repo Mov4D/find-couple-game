@@ -11,7 +11,6 @@ class CardGameView: UIView {
     init() {
         super.init(frame: .zero)
         setupView()
-        //self.backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
